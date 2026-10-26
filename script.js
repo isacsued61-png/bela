@@ -192,6 +192,114 @@ function proximaPergunta() {
     indiceAtual = (indiceAtual + 1) % perguntas[modoAtual].length;
     exibirPergunta();
 }
+// ==========================================
+// PETS INTERATIVOS QUE ANDAM PELO SITE 🐱🐻
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    // Frases carinhosas quando clica nos pets
+    const falasCat = ["Miau! Te amo! 🐱❤️", "Você é perfeita! ✨", "Carinho aqui! 🥰", "Purr... 💖", "Você é o amor dele! 💕"];
+    const falasBear = ["Hum! Abraço de urso! 🐻🤗", "Você é muito fofa! 🧸", "Amo vocês dois! ❤️", "Owww... 💖", "Melhor casal! ✨"];
+
+    // Criar elementos dos Pets
+    const pet1 = document.createElement("div");
+    pet1.className = "pet-caminhando pet-andando";
+    pet1.id = "petGato";
+    pet1.innerHTML = `<span class="emoji">🐱</span><div class="pet-balao" id="balaoGato">Miau!</div>`;
+
+    const pet2 = document.createElement("div");
+    pet2.className = "pet-caminhando pet-andando";
+    pet2.id = "petUrso";
+    pet2.innerHTML = `<span class="emoji">🐻</span><div class="pet-balao" id="balaoUrso">Oi amor!</div>`;
+
+    document.body.appendChild(pet1);
+    document.body.appendChild(pet2);
+
+    // Posições e velocidades iniciais
+    let posX1 = 50;
+    let posX2 = window.innerWidth - 120;
+    let dir1 = 1;  // 1 = direita, -1 = esquerda
+    let dir2 = -1;
+    let vel1 = 1.2;
+    let vel2 = 0.9;
+
+    // Função de animação contínua (Andar)
+    function moverPets() {
+        const larguraTela = window.innerWidth - 60;
+
+        // Movimentação do Gatinho
+        posX1 += vel1 * dir1;
+        if (posX1 >= larguraTela) { dir1 = -1; }
+        if (posX1 <= 20) { dir1 = 1; }
+        pet1.style.left = posX1 + "px";
+        pet1.querySelector('.emoji').style.transform = dir1 === 1 ? 'scaleX(1)' : 'scaleX(-1)';
+
+        // Movimentação do Ursinho
+        posX2 += vel2 * dir2;
+        if (posX2 >= larguraTela) { dir2 = -1; }
+        if (posX2 <= 20) { dir2 = 1; }
+        pet2.style.left = posX2 + "px";
+        pet2.querySelector('.emoji').style.transform = dir2 === 1 ? 'scaleX(1)' : 'scaleX(-1)';
+
+        requestAnimationFrame(moverPets);
+    }
+    moverPets();
+
+    // Reação ao clicar no Gatinho 🐱
+    pet1.addEventListener("click", (e) => {
+        e.stopPropagation();
+        animarEInteragir(pet1, "balaoGato", falasCat);
+    });
+
+    // Reação ao clicar no Ursinho 🐻
+    pet2.addEventListener("click", (e) => {
+        e.stopPropagation();
+        animarEInteragir(pet2, "balaoUrso", falasBear);
+    });
+
+    function animarEInteragir(petElem, idBalao, listaFalas) {
+        // Efeito de pulo
+        petElem.classList.remove("pet-pulo");
+        void petElem.offsetWidth; // Força re-render para reiniciar animação
+        petElem.classList.add("pet-pulo");
+
+        // Mostrar balão de fala aleatório
+        const balao = document.getElementById(idBalao);
+        const falaSorteada = listaFalas[Math.floor(Math.random() * listaFalas.length)];
+        balao.innerText = falaSorteada;
+        balao.classList.add("ativo");
+
+        // Soltar mini corações do pet
+        soltarCoracoesPet(petElem);
+
+        setTimeout(() => {
+            balao.classList.remove("ativo");
+        }, 2500);
+    }
+
+    // Criar explosão de pequenos corações ao clicar no pet
+    function soltarCoracoesPet(petElem) {
+        const rect = petElem.getBoundingClientRect();
+        for (let i = 0; i < 6; i++) {
+            const coracao = document.createElement("span");
+            coracao.innerText = Math.random() > 0.5 ? "💖" : "✨";
+            coracao.style.position = "fixed";
+            coracao.style.left = (rect.left + 15 + (Math.random() * 20 - 10)) + "px";
+            coracao.style.top = (rect.top - 10) + "px";
+            coracao.style.fontSize = "1.2rem";
+            coracao.style.zIndex = "10000";
+            coracao.style.pointerEvents = "none";
+            coracao.style.transition = "transform 1s ease-out, opacity 1s ease-out";
+            document.body.appendChild(coracao);
+
+            setTimeout(() => {
+                coracao.style.transform = `translate(${(Math.random() - 0.5) * 60}px, -60px) scale(1.3)`;
+                coracao.style.opacity = "0";
+            }, 30);
+
+            setTimeout(() => coracao.remove(), 1000);
+        }
+    }
+});
 
 function voltarMenuModos() {
     document.getElementById("menuModos").classList.remove("hidden");
