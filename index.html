@@ -39,7 +39,7 @@
 <body class="bg-gradient-to-br from-softPink via-pink-50 to-rose-100 text-gray-800 font-sans min-h-screen relative overflow-x-hidden">
 
     <!-- Header Flutuante -->
-    <header class="fixed top-0 left-0 right-0 z-50 glass-card shadow-sm py-3 px-6 flex justify-between items-center">
+    <header class="fixed top-0 left-0 right-0 z-40 glass-card shadow-sm py-3 px-6 flex justify-between items-center">
         <div class="flex items-center space-x-2">
             <i class="fa-solid fa-heart text-warmRed text-xl heart-beat"></i>
             <span class="font-romantic text-2xl font-bold text-deepRose">Meu Amor & Eu</span>
@@ -49,11 +49,16 @@
             <a href="#historia" class="hover:text-deepRose transition">Nossa História</a>
             <a href="#galeria" class="hover:text-deepRose transition">Galeria</a>
             <a href="#playlist" class="hover:text-deepRose transition">Música</a>
-            <a href="#razoes" class="hover:text-deepRose transition">Motivos</a>
+            <a href="#jogo" class="hover:text-deepRose transition text-warmRed font-bold"><i class="fa-solid fa-fire mr-1"></i>Jogo de Casal</a>
         </nav>
-        <button id="btnCarta" class="bg-warmRed hover:bg-deepRose text-white px-4 py-1.5 rounded-full text-sm font-medium shadow transition transform hover:scale-105">
-            <i class="fa-solid fa-envelope-open-text mr-1"></i> Ler Carta
-        </button>
+        <div class="flex items-center space-x-2">
+            <button id="btnAbrirJogo" class="bg-gradient-to-r from-warmRed to-deepRose hover:opacity-90 text-white px-3.5 py-1.5 rounded-full text-xs md:text-sm font-medium shadow transition transform hover:scale-105">
+                <i class="fa-solid fa-gamepad mr-1"></i> Jogar Jogo
+            </button>
+            <button id="btnCarta" class="bg-warmRed hover:bg-deepRose text-white px-3.5 py-1.5 rounded-full text-xs md:text-sm font-medium shadow transition transform hover:scale-105">
+                <i class="fa-solid fa-envelope-open-text mr-1"></i> Ler Carta
+            </button>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -134,6 +139,21 @@
         </div>
     </section>
 
+    <!-- Banner Chamada para o Jogo -->
+    <section id="jogo" class="py-12 px-6 max-w-4xl mx-auto">
+        <div class="bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden text-center">
+            <div class="absolute -right-10 -bottom-10 opacity-20 text-9xl"><i class="fa-solid fa-fire"></i></div>
+            <span class="bg-white/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block">Exclusivo Para Nós Dois</span>
+            <h2 class="font-romantic text-4xl md:text-5xl font-bold mb-3">Jogo do Amor & Perguntas Quentes 🔥</h2>
+            <p class="text-white/90 text-sm md:text-base max-w-xl mx-auto mb-6">
+                Teste nossa sintonia com perguntas românticas e descubra desejos e curiosidades com cartas quentes!
+            </p>
+            <button onclick="abrirModalJogo()" class="bg-white text-deepRose font-bold px-8 py-3 rounded-full shadow-lg hover:bg-rose-50 transition transform hover:scale-105">
+                <i class="fa-solid fa-play-circle mr-2 text-warmRed"></i> Começar a Jogar Agora
+            </button>
+        </div>
+    </section>
+
     <!-- Galeria de Fotos -->
     <section id="galeria" class="py-16 px-6 max-w-6xl mx-auto">
         <div class="text-center mb-12">
@@ -151,15 +171,15 @@
 
         <div id="grid-fotos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             <div class="bg-white p-4 pb-6 rounded shadow-md transform rotate-1 hover:rotate-0 transition duration-300">
-                <img src="assets/foto1.jpg" alt="Minha Foto Linda" class="w-full h-64 object-cover rounded-sm mb-3">
+                <img src="assets/foto1.jpg" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=600'" alt="Foto 1" class="w-full h-64 object-cover rounded-sm mb-3">
                 <p class="font-romantic text-xl text-center text-gray-700">O sorriso que ilumina meu dia ✨</p>
             </div>
             <div class="bg-white p-4 pb-6 rounded shadow-md transform -rotate-2 hover:rotate-0 transition duration-300">
-                <img src="assets/foto2.jpg" onerror="this.src=''" alt="Foto 2" class="w-full h-64 object-cover rounded-sm mb-3">
+                <img src="assets/foto2.jpg" onerror="this.src='https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=600'" alt="Foto 2" class="w-full h-64 object-cover rounded-sm mb-3">
                 <p class="font-romantic text-xl text-center text-gray-700">Melhores momentos com você 💖</p>
             </div>
             <div class="bg-white p-4 pb-6 rounded shadow-md transform rotate-2 hover:rotate-0 transition duration-300">
-                <img src="assets/foto3.jpg" onerror="this.src=''" alt="Foto 3" class="w-full h-64 object-cover rounded-sm mb-3">
+                <img src="assets/foto3.jpg" onerror="this.src='https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&q=80&w=600'" alt="Foto 3" class="w-full h-64 object-cover rounded-sm mb-3">
                 <p class="font-romantic text-xl text-center text-gray-700">Amor pra vida inteira 💕</p>
             </div>
         </div>
@@ -192,13 +212,61 @@
         </div>
     </section>
 
+    <!-- MODAL DO JOGO DO AMOR (Pop-up Interativo) -->
+    <div id="modalJogo" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex items-center justify-center p-3 md:p-6 overflow-y-auto">
+        <div class="bg-gradient-to-br from-gray-900 via-rose-950 to-red-950 text-white rounded-3xl max-w-2xl w-full p-6 md:p-8 shadow-2xl relative border border-rose-500/30 my-auto">
+            <button onclick="fecharModalJogo()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold z-10">&times;</button>
+            
+            <div class="text-center mb-6">
+                <span class="bg-rose-500/20 text-rose-300 text-xs font-semibold px-3 py-1 rounded-full border border-rose-500/30">
+                    <i class="fa-solid fa-fire mr-1"></i> Jogo Interativo
+                </span>
+                <h3 class="font-romantic text-4xl md:text-5xl font-bold text-rose-300 mt-2">Amor & Perguntas Quentes</h3>
+            </div>
+
+            <!-- Seleção de Modo -->
+            <div id="menuModos" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <button onclick="iniciarJogo('fofo')" class="bg-gradient-to-br from-pink-600 to-rose-700 hover:from-pink-500 hover:to-rose-600 p-6 rounded-2xl text-left border border-pink-400/30 shadow-lg transition transform hover:-translate-y-1">
+                    <div class="text-3xl mb-2">💖</div>
+                    <h4 class="font-bold text-xl text-white">Modo Romântico & Fofo</h4>
+                    <p class="text-xs text-pink-100 mt-1">Perguntas sobre nossa história, lembranças e declarações.</p>
+                </button>
+
+                <button onclick="iniciarJogo('quente')" class="bg-gradient-to-br from-red-700 to-rose-900 hover:from-red-600 hover:to-rose-800 p-6 rounded-2xl text-left border border-red-500/30 shadow-lg transition transform hover:-translate-y-1">
+                    <div class="text-3xl mb-2">🔥</div>
+                    <h4 class="font-bold text-xl text-white">Modo Perguntas Quentes</h4>
+                    <p class="text-xs text-red-100 mt-1">Desejos, provocações e segredos picantes para apimentar.</p>
+                </button>
+            </div>
+
+            <!-- Área da Carta/Pergunta -->
+            <div id="areaPergunta" class="hidden text-center py-4">
+                <div id="cartaoPergunta" class="bg-white/10 backdrop-blur-md rounded-2xl p-6 md:p-8 border border-white/20 mb-6 shadow-xl relative">
+                    <span id="categoriaTag" class="text-xs font-bold uppercase tracking-wider text-rose-300 mb-2 block"></span>
+                    <p id="textoPergunta" class="text-lg md:text-2xl font-serif text-white leading-relaxed font-semibold">
+                        Sua pergunta aparecerá aqui...
+                    </p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-3">
+                    <button onclick="proximaPergunta()" class="bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 text-white font-bold px-6 py-3 rounded-full shadow-lg transition transform hover:scale-105 w-full sm:w-auto">
+                        <i class="fa-solid fa-dice mr-2"></i> Próxima Carta
+                    </button>
+                    <button onclick="voltarMenuModos()" class="bg-white/10 hover:bg-white/20 text-gray-300 font-medium px-5 py-3 rounded-full text-sm transition w-full sm:w-auto">
+                        <i class="fa-solid fa-rotate-left mr-1"></i> Mudar Modo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal da Carta de Amor -->
     <div id="modalCarta" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative border-2 border-pink-300">
             <button id="btnFecharCarta" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold">&times;</button>
             <div class="text-center mb-4">
                 <i class="fa-solid fa-envelope-heart text-warmRed text-4xl mb-2"></i>
-                <h3 class="font-romantic text-3xl font-bold text-deepRose">Para a Minha Namorada BELA</h3>
+                <h3 class="font-romantic text-3xl font-bold text-deepRose">Para a Minha Namorada</h3>
             </div>
             <div class="font-serif text-gray-700 space-y-3 text-sm leading-relaxed max-h-72 overflow-y-auto pr-2">
                 <p>Minha linda,</p>
