@@ -24,3 +24,58 @@
 .heart-beat {
     animation: heartbeat 1.2s infinite;
 }
+/* PETS INTERATIVOS QUE ANDAM PELO SITE */
+.pet-caminhando {
+    position: fixed;
+    bottom: 20px;
+    z-index: 9999;
+    font-size: 2.8rem;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease, left 0.05s linear;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+}
+
+.pet-andando {
+    animation: passosPet 0.4s infinite alternate ease-in-out;
+}
+
+@keyframes passosPet {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-8px) rotate(4deg); }
+}
+
+.pet-pulo {
+    animation: puloPet 0.6s ease-in-out !important;
+}
+
+@keyframes puloPet {
+    0% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.4) translateY(-30px) rotate(15deg); }
+    100% { transform: scale(1) translateY(0) rotate(0deg); }
+}
+
+/* Balão de fala do Pet */
+.pet-balao {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #ff4d6d;
+    font-weight: bold;
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border: 1px solid #ffb6c1;
+}
+
+.pet-balao.ativo {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
