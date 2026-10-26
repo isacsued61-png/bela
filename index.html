@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Amor | 05 de Fevereiro de 2026</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        romantic: ['"Dancing Script"', 'cursive'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        roseGold: '#e0a96d',
+                        softPink: '#fff0f3',
+                        deepRose: '#c9184a',
+                        warmRed: '#ff4d6d',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Fontes Google & Ícones FontAwesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Customizado -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-softPink via-pink-50 to-rose-100 text-gray-800 font-sans min-h-screen relative overflow-x-hidden">
+
+    <!-- Header Flutuante -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-card shadow-sm py-3 px-6 flex justify-between items-center">
+        <div class="flex items-center space-x-2">
+            <i class="fa-solid fa-heart text-warmRed text-xl heart-beat"></i>
+            <span class="font-romantic text-2xl font-bold text-deepRose">Meu Amor & Eu</span>
+        </div>
+        <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
+            <a href="#contador" class="hover:text-deepRose transition">Tempo juntos</a>
+            <a href="#historia" class="hover:text-deepRose transition">Nossa História</a>
+            <a href="#galeria" class="hover:text-deepRose transition">Galeria</a>
+            <a href="#playlist" class="hover:text-deepRose transition">Música</a>
+            <a href="#razoes" class="hover:text-deepRose transition">Motivos</a>
+        </nav>
+        <button id="btnCarta" class="bg-warmRed hover:bg-deepRose text-white px-4 py-1.5 rounded-full text-sm font-medium shadow transition transform hover:scale-105">
+            <i class="fa-solid fa-envelope-open-text mr-1"></i> Ler Carta
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 px-6 text-center flex flex-col items-center justify-center">
+        <div class="relative w-40 h-40 md:w-52 md:h-52 rounded-full p-2 bg-gradient-to-tr from-warmRed to-roseGold shadow-xl mb-6 animate-float">
+            <img src="assets/foto-perfil.jpg" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&q=80&w=600'" alt="Nosso Amor" class="w-full h-full object-cover rounded-full border-4 border-white shadow-inner">
+        </div>
+
+        <h1 class="font-romantic text-5xl md:text-7xl font-bold text-deepRose mb-3 drop-shadow-sm">
+            Você é o meu melhor destino
+        </h1>
+        <p class="font-serif italic text-lg md:text-xl text-gray-600 max-w-xl mb-8">
+            "Desde o momento em que nossos caminhos se cruzaram na internet, minha vida ganhou cor, som e sentido."
+        </p>
+
+        <!-- Contador de Tempo -->
+        <div id="contador" class="glass-card rounded-2xl p-6 shadow-lg max-w-2xl w-full mx-auto mb-8 border border-pink-200">
+            <h3 class="text-sm uppercase tracking-widest text-deepRose font-semibold mb-4">Juntos desde 05 de Fevereiro de 2026</h3>
+            <div class="grid grid-cols-4 gap-3 text-center">
+                <div class="bg-white/80 rounded-xl p-3 shadow-sm">
+                    <span id="dias" class="text-2xl md:text-4xl font-bold text-deepRose block">0</span>
+                    <span class="text-xs text-gray-500 uppercase">Dias</span>
+                </div>
+                <div class="bg-white/80 rounded-xl p-3 shadow-sm">
+                    <span id="horas" class="text-2xl md:text-4xl font-bold text-deepRose block">0</span>
+                    <span class="text-xs text-gray-500 uppercase">Horas</span>
+                </div>
+                <div class="bg-white/80 rounded-xl p-3 shadow-sm">
+                    <span id="minutos" class="text-2xl md:text-4xl font-bold text-deepRose block">0</span>
+                    <span class="text-xs text-gray-500 uppercase">Minutos</span>
+                </div>
+                <div class="bg-white/80 rounded-xl p-3 shadow-sm">
+                    <span id="segundos" class="text-2xl md:text-4xl font-bold text-deepRose block">0</span>
+                    <span class="text-xs text-gray-500 uppercase">Segundos</span>
+                </div>
+            </div>
+        </div>
+
+        <button id="btnSurpresa" class="bg-gradient-to-r from-warmRed to-deepRose text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5">
+            <i class="fa-solid fa-heart mr-2"></i> Clique para uma Surpresa de Amor 💖
+        </button>
+    </section>
+
+    <!-- Linha do Tempo -->
+    <section id="historia" class="py-16 px-6 max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="font-romantic text-4xl md:text-5xl font-bold text-deepRose mb-2">Nossa História de Amor</h2>
+            <p class="text-gray-600 font-serif">Do primeiro clique para o para sempre</p>
+        </div>
+
+        <div class="border-l-2 border-warmRed/40 ml-4 md:ml-32 space-y-12 pl-6 md:pl-10 relative">
+            <div class="relative">
+                <div class="absolute -left-[35px] top-1.5 w-6 h-6 rounded-full bg-warmRed border-4 border-white shadow"></div>
+                <span class="text-xs font-bold text-warmRed tracking-wider uppercase">O Encontro Online</span>
+                <h3 class="text-xl font-bold text-gray-800 mt-1">O primeiro "Olá"</h3>
+                <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                    Nossas telas se cruzaram na internet. Uma simples notificação que trouxe a pessoa mais importante da minha vida.
+                </p>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -left-[35px] top-1.5 w-6 h-6 rounded-full bg-warmRed border-4 border-white shadow"></div>
+                <span class="text-xs font-bold text-warmRed tracking-wider uppercase">Madrugadas Especiais</span>
+                <h3 class="text-xl font-bold text-gray-800 mt-1">Horas conversando</h3>
+                <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                    Cada áudio, risada e mensagem compartilhada só confirmava a conexão única que nascia entre nós.
+                </p>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -left-[35px] top-1.5 w-6 h-6 rounded-full bg-deepRose border-4 border-white shadow"></div>
+                <span class="text-xs font-bold text-deepRose tracking-wider uppercase">05 de Fevereiro de 2026</span>
+                <h3 class="text-xl font-bold text-gray-800 mt-1">Nosso Namoro Oficial</h3>
+                <p class="text-gray-600 mt-2 text-sm leading-relaxed">
+                    O dia em que decidimos caminhar juntos pra sempre. O melhor 'SIM' da minha vida!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria de Fotos -->
+    <section id="galeria" class="py-16 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="font-romantic text-4xl md:text-5xl font-bold text-deepRose mb-2">Nossas Memórias</h2>
+            <p class="text-gray-600 font-serif">Alguns dos meus momentos favoritos com você</p>
+            
+            <div class="mt-6">
+                <label for="input-foto" class="cursor-pointer bg-white border border-warmRed text-warmRed hover:bg-warmRed hover:text-white px-5 py-2.5 rounded-full text-sm font-medium shadow-sm transition inline-flex items-center space-x-2">
+                    <i class="fa-solid fa-camera"></i>
+                    <span>Adicionar Mais Fotos</span>
+                </label>
+                <input type="file" id="input-foto" accept="image/*" class="hidden">
+            </div>
+        </div>
+
+        <div id="grid-fotos" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <div class="bg-white p-4 pb-6 rounded shadow-md transform rotate-1 hover:rotate-0 transition duration-300">
+                <img src="assets/foto1.jpg" alt="Minha Foto Linda" class="w-full h-64 object-cover rounded-sm mb-3">
+                <p class="font-romantic text-xl text-center text-gray-700">O sorriso que ilumina meu dia ✨</p>
+            </div>
+            <div class="bg-white p-4 pb-6 rounded shadow-md transform -rotate-2 hover:rotate-0 transition duration-300">
+                <img src="assets/foto2.jpg" onerror="this.src=''" alt="Foto 2" class="w-full h-64 object-cover rounded-sm mb-3">
+                <p class="font-romantic text-xl text-center text-gray-700">Melhores momentos com você 💖</p>
+            </div>
+            <div class="bg-white p-4 pb-6 rounded shadow-md transform rotate-2 hover:rotate-0 transition duration-300">
+                <img src="assets/foto3.jpg" onerror="this.src=''" alt="Foto 3" class="w-full h-64 object-cover rounded-sm mb-3">
+                <p class="font-romantic text-xl text-center text-gray-700">Amor pra vida inteira 💕</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Player de Música -->
+    <section id="playlist" class="py-16 px-6 max-w-3xl mx-auto">
+        <div class="glass-card rounded-3xl p-8 shadow-xl border border-pink-200">
+            <div class="text-center mb-8">
+                <span class="text-warmRed text-sm uppercase tracking-widest font-semibold"><i class="fa-solid fa-music mr-1"></i> Nossa Trilha Sonora</span>
+                <h2 class="font-romantic text-4xl font-bold text-deepRose mt-1">Música Especial</h2>
+            </div>
+
+            <div class="bg-white/90 p-4 rounded-xl flex items-center justify-between shadow-sm">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-warmRed/10 rounded-full flex items-center justify-center text-warmRed text-xl">
+                        <i class="fa-solid fa-compact-disc animate-spin"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-800">Nossa Canção</h4>
+                        <p class="text-xs text-gray-500">A trilha sonora do nosso amor</p>
+                    </div>
+                </div>
+                <button id="btnPlayer" class="bg-warmRed text-white w-10 h-10 rounded-full flex items-center justify-center shadow hover:bg-deepRose transition">
+                    <i id="iconePlay" class="fa-solid fa-play"></i>
+                </button>
+            </div>
+            <audio id="audioPlayer" src="assets/musica.mp3"></audio>
+            <p id="statusAudio" class="text-center text-xs text-gray-500 mt-4"></p>
+        </div>
+    </section>
+
+    <!-- Modal da Carta de Amor -->
+    <div id="modalCarta" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl relative border-2 border-pink-300">
+            <button id="btnFecharCarta" class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 text-2xl font-bold">&times;</button>
+            <div class="text-center mb-4">
+                <i class="fa-solid fa-envelope-heart text-warmRed text-4xl mb-2"></i>
+                <h3 class="font-romantic text-3xl font-bold text-deepRose">Para a Minha Namorada BELA</h3>
+            </div>
+            <div class="font-serif text-gray-700 space-y-3 text-sm leading-relaxed max-h-72 overflow-y-auto pr-2">
+                <p>Minha linda,</p>
+                <p>Queria registrar aqui o quanto sou grato por ter te encontrado. A nossa história começou de forma inesperada na internet, mas se tornou a parte mais real e bonita da minha vida.</p>
+                <p>Cada conversa, cada sorriso e cada momento ao seu lado desde o dia 05 de fevereiro de 2026 só confirmam o quanto você é especial para mim.</p>
+                <p>Prometo estar sempre ao seu lado, cuidando de você e te amando cada dia mais.</p>
+                <p class="text-right font-romantic text-2xl text-deepRose mt-4">Com todo o meu amor ❤️</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-10 text-center bg-white/60 border-t border-pink-200 mt-12">
+        <p class="font-romantic text-3xl text-deepRose mb-2">Te amo infinitamente! 💖</p>
+        <p class="text-xs text-gray-500">&copy; Feito com todo carinho do mundo.</p>
+    </footer>
+
+    <!-- Script Principal -->
+    <script src="script.js"></script>
+</body>
+</html>
